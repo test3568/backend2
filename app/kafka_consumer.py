@@ -1,3 +1,5 @@
+import sys
+
 import ujson
 from confluent_kafka import Consumer, TopicPartition, KafkaError
 import json
@@ -37,6 +39,7 @@ def consume_messages():
                 logger.error(f"Kafka poll error: {error}")
                 if error.code() == KafkaError.NOT_COORDINATOR:
                     logger.warning(f"NOT_COORDINATOR error code, exiting")
+                    sys.exit(-1)
                 continue
 
             # noinspection PyArgumentList

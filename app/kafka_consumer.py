@@ -98,6 +98,8 @@ def process_message(message):
         """, [crossing_polygon])
         rows = cursor.fetchall()
         intersection_ids = [i[0] for i in rows]
+        if message['editing_polygon_id'] and message['editing_polygon_id'] in intersection_ids:
+            intersection_ids.remove(message['editing_polygon_id'])
 
     if intersection_ids:
         message['intersection_polygon_ids'] = intersection_ids

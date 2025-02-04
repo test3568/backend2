@@ -7,3 +7,4 @@ pydantic-settings==2.7.1
 confluent-kafka==2.8.0
 ujson==5.10.0
 django-redis==5.4.0
+colorlog==6.9.0

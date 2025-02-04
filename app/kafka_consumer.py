@@ -64,6 +64,10 @@ def consume_messages():
 
 
 def process_message(message):
+    if message['antimeridian_crossing']:
+        for coordinate in message['polygon']['coordinates'][0]:
+            if coordinate[0] < 0:
+                coordinate[0] += 360
     crossing_polygon = GEOSGeometry(str(message['polygon']), srid=4326).json
     with connection.cursor() as cursor:
         cursor.execute("""
